@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rocket Launch Countdown</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #000;
+            color: white;
+        }
+        #countdown {
+            font-size: 50px;
+            margin-top: 20px;
+        }
+        #rocket {
+            width: 100px;
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: bottom 5s ease-in;
+        }
+        .launching {
+            bottom: 100vh !important;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rocket Launch Countdown</h1>
+    <div id="countdown">10</div>
+    <button onclick="startCountdown()">Start Countdown</button>
+    <img id="rocket" src="https://upload.wikimedia.org/wikipedia/commons/e/ec/SpaceX_Falcon_9.svg" alt="Rocket">
+
+    <script>
+        function startCountdown() {
+            let count = 10;
+            const countdownElement = document.getElementById("countdown");
+            const rocket = document.getElementById("rocket");
+            const interval = setInterval(() => {
+                countdownElement.textContent = count;
+                if (count === 0) {
+                    clearInterval(interval);
+                    countdownElement.textContent = "Liftoff! 🚀";
+                    rocket.classList.add("launching");
+                }
+                count--;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
